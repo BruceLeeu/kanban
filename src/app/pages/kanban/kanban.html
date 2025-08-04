@@ -1,21 +1,77 @@
 <app-taskbar />
-<div class="kanban-columns">
+<div class="kanban-columns" cdkDropListGroup>
   <mat-card>
     <mat-card-header>
       <h3>Todo</h3>
     </mat-card-header>
-    <mat-card-content> ... </mat-card-content>
+    <mat-card-content>
+      <div
+        class="example-list"
+        cdkDropList
+        (cdkDropListDropped)="drop($event)"
+        [cdkDropListData]="todos()"
+      >
+        @for (todo of todos(); track $index) {
+        <app-task-card
+          [title]="todo.title"
+          [status]="todo.status"
+          cdkDrag
+          class="example-box"
+        >
+          <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+          {{todo.content}}</app-task-card
+        >
+        }
+      </div>
+    </mat-card-content>
   </mat-card>
   <mat-card>
     <mat-card-header>
       <h3>In progress</h3>
     </mat-card-header>
-    <mat-card-content> ... </mat-card-content>
+    <mat-card-content>
+      <div
+        class="example-list"
+        cdkDropList
+        (cdkDropListDropped)="drop($event)"
+        [cdkDropListData]="inProgresses()"
+      >
+        @for (todo of inProgresses(); track $index) {
+        <app-task-card
+          [title]="todo.title"
+          [status]="todo.status"
+          cdkDrag
+          class="example-box"
+        >
+          <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+          {{todo.content}}</app-task-card
+        >
+        }
+      </div>
+    </mat-card-content>
   </mat-card>
   <mat-card>
     <mat-card-header>
       <h3>Done</h3>
     </mat-card-header>
-    <mat-card-content> ... </mat-card-content>
+    <mat-card-content>
+      <div
+        class="example-list"
+        cdkDropList
+        (cdkDropListDropped)="drop($event)"
+        [cdkDropListData]="dones()"
+      >
+        @for (todo of dones(); track $index) {
+        <app-task-card
+          [title]="todo.title"
+          [status]="todo.status"
+          cdkDrag
+          class="example-box"
+          ><div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+          {{todo.content}}</app-task-card
+        >
+        }
+      </div>
+    </mat-card-content>
   </mat-card>
 </div>
