@@ -1,16 +1,26 @@
-import { signalStore, withState } from '@ngrx/signals';
+import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
 import { Task } from '../components/task-card/task-card';
 
 type TaskListState = {
-  todos: Array<Task>;
-  inProgresses: Array<Task>;
-  dones: Array<Task>;
+  todo: Array<Task>;
+  inProgress: Array<Task>;
+  done: Array<Task>;
 };
 
 const initialState: TaskListState = {
-  todos: [],
-  inProgresses: [],
-  dones: [],
+  todo: [],
+  inProgress: [],
+  done: [],
 };
 
-export const TaskListStore = signalStore(withState(initialState));
+export const TaskListStore = signalStore(
+  withState(initialState),
+  withMethods((store) => ({
+    addTask(newTask: Task): void {
+      patchState(store, (state) => {
+        state[newTask.status].push(newTask);
+        return state;
+      });
+    },
+  }))
+);

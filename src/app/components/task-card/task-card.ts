@@ -5,7 +5,7 @@ import { MatChipsModule } from '@angular/material/chips';
 export interface Task {
   title: string;
   content: string;
-  status: 'todo' | 'in-progress' | 'done';
+  status: 'todo' | 'inProgress' | 'done';
 }
 
 @Component({

@@ -9,9 +9,9 @@
         class="example-list"
         cdkDropList
         (cdkDropListDropped)="drop($event)"
-        [cdkDropListData]="store.todos()"
+        [cdkDropListData]="store.todo()"
       >
-        @for (todo of store.todos(); track $index) {
+        @for (todo of store.todo(); track $index) {
         <app-task-card
           [title]="todo.title"
           [status]="todo.status"
@@ -34,9 +34,9 @@
         class="example-list"
         cdkDropList
         (cdkDropListDropped)="drop($event)"
-        [cdkDropListData]="store.inProgresses()"
+        [cdkDropListData]="store.inProgress()"
       >
-        @for (todo of store.inProgresses(); track $index) {
+        @for (todo of store.inProgress(); track $index) {
         <app-task-card
           [title]="todo.title"
           [status]="todo.status"
@@ -59,9 +59,9 @@
         class="example-list"
         cdkDropList
         (cdkDropListDropped)="drop($event)"
-        [cdkDropListData]="store.dones()"
+        [cdkDropListData]="store.done()"
       >
-        @for (todo of store.dones(); track $index) {
+        @for (todo of store.done(); track $index) {
         <app-task-card
           [title]="todo.title"
           [status]="todo.status"

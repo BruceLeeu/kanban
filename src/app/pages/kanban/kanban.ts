@@ -1,4 +1,10 @@
-import { Component, inject, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { Taskbar } from '../../components/taskbar/taskbar';
 import { MatCardModule } from '@angular/material/card';
 import { Task, TaskCard } from '../../components/task-card/task-card';
@@ -16,12 +22,13 @@ import { TaskListStore } from '../../stores/task-list-store';
   providers: [TaskListStore],
   templateUrl: './kanban.html',
   styleUrl: './kanban.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Kanban {
+export class Kanban implements OnInit {
   readonly store = inject(TaskListStore);
 
-  constructor() {
-    this.store.todos().push(
+  ngOnInit() {
+    this.store.todo().push(
       {
         title: 'Mijn Taak Titel',
         content: 'Dit moet er gebeuren',

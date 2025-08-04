@@ -1,0 +1,34 @@
+<h2 mat-dialog-title>Voeg een nieuwe taak toe</h2>
+<mat-dialog-content>
+  <form [formGroup]="newTaskFormGroup">
+    <mat-form-field>
+      <mat-label>Titel</mat-label>
+      <input
+        matInput
+        placeholder="Bijv. Doktersafspraak"
+        formControlName="title"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Inhoud</mat-label>
+      <textarea
+        matInput
+        placeholder="Bijv. Bel Dr. Van der Poll voor een afspraak op 11 augustus"
+        formControlName="content"
+      ></textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status">
+        <mat-option value="todo">Te doen</mat-option>
+        <mat-option value="inProgress">Bezig</mat-option>
+        <mat-option value="done">Klaar</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+
+  <mat-dialog-actions>
+    <button matButton mat-dialog-close>Annuleren</button>
+    <button matButton (click)="addTask()" mat-dialog-close="">Toeveogen</button>
+  </mat-dialog-actions>
+</mat-dialog-content>
