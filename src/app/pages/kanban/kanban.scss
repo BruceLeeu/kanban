@@ -1,0 +1,11 @@
+.kanban-columns {
+  border: 1px solid lightslategray;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.column {
+  border: 1px dotted lightgray;
+}
