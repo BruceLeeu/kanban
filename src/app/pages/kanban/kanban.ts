@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Taskbar } from '../../components/taskbar/taskbar';
 import { MatCardModule } from '@angular/material/card';
 import { Task, TaskCard } from '../../components/task-card/task-card';
@@ -8,50 +8,32 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
+import { TaskListStore } from '../../stores/task-list-store';
 
 @Component({
   selector: 'app-kanban',
   imports: [Taskbar, MatCardModule, TaskCard, DragDropModule],
+  providers: [TaskListStore],
   templateUrl: './kanban.html',
   styleUrl: './kanban.scss',
 })
 export class Kanban {
-  public todos = signal<Array<Task>>([
-    {
-      title: 'Mijn Taak Titel',
-      content: 'Dit moet er gebeuren',
-      status: 'todo',
-    },
-    {
-      title: 'Mijn Tweede Taak Titel',
-      content: 'Dit moet er ook nog gebeuren',
-      status: 'todo',
-    },
-  ]);
-  public inProgresses = signal<Array<Task>>([
-    {
-      title: 'DE Taak Titel',
-      content: 'Dit moet er gebeuren',
-      status: 'todo',
-    },
-    {
-      title: 'DE Tweede Taak Titel',
-      content: 'Dit moet er ook nog gebeuren',
-      status: 'todo',
-    },
-  ]);
-  public dones = signal<Array<Task>>([
-    {
-      title: 'EEN Taak Titel',
-      content: 'Dit moet er gebeuren',
-      status: 'todo',
-    },
-    {
-      title: 'EEN Tweede Taak Titel',
-      content: 'Dit moet er ook nog gebeuren',
-      status: 'todo',
-    },
-  ]);
+  readonly store = inject(TaskListStore);
+
+  constructor() {
+    this.store.todos().push(
+      {
+        title: 'Mijn Taak Titel',
+        content: 'Dit moet er gebeuren',
+        status: 'todo',
+      },
+      {
+        title: 'Mijn Tweede Taak Titel',
+        content: 'Dit moet er ook nog gebeuren',
+        status: 'todo',
+      }
+    );
+  }
 
   drop(dragDropEvent: CdkDragDrop<Array<Task>>) {
     if (dragDropEvent.previousContainer === dragDropEvent.container) {

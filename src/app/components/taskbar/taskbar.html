@@ -1,9 +1,9 @@
 <div class="taskbar">
   <h2>Taken</h2>
   <div class="taskbar__summary">
-    <span>Done: xxx</span>
-    <span>In progress: xxx</span>
-    <span>Todo: xxx</span>
+    <span>Todo: {{store.todos().length}}</span>
+    <span>In progress: {{store.inProgresses().length}}</span>
+    <span>Done: {{store.dones().length}}</span>
   </div>
   <button matButton="tonal">Nieuwe taak</button>
 </div>
