@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-taskbar',
-  imports: [],
+  imports: [MatButtonModule],
   templateUrl: './taskbar.html',
-  styleUrl: './taskbar.scss'
+  styleUrl: './taskbar.scss',
 })
-export class Taskbar {
-
-}
+export class Taskbar {}
